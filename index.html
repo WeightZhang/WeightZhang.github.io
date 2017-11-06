@@ -1,56 +1,229 @@
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-<!-- saved from url=(0070)http://xz.sjlmq.cn/share/index.html?from=groupmessage&isappinstalled=1 -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<title></title>
+<!--<link rel="icon" href="images/download/icon.ico" type="image/x-icon" />-->
+<!--<link rel="shortcut icon" href="images/download/icon.ico" type="image/x-icon" />-->
+<style type="text/css">
+* {
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
 
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
-    <script type="text/javascript" src="./jquery.min.js"></script>
-    <style type="text/css">
-        html,body{height:100%;overflow:hidden;}
-        *{margin:0; padding:0;}
-        a{text-decoration: none;}
-        .weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
-        .weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
-        .main{width:100%;height:100%;}
-        .background{width:100%; height:100%; position:absolute; z-index:-1}
-        .download{width:70%; height:60%; margin:0 auto; background-color:#00FF33; position:absolute; top:40%; left:15%;}
-        .down_android{width:100%;height:30%; background-color:#FFFF00;}
-        .down_android img{width:100%;height:100%; position:relative; z-index:1;}
+h1 {
+	font-size: 1.5em;
+}
 
-        .android{width:20%; height:55%; background-color:#AFF000; float:right; margin-right:15%; margin-top:-40%;}
-        .android img{width:100%; height:100%;}
-    </style>
-    <title>欢乐填大坑</title>
-    <link rel="shortcut icon" href="tdk.ico" />
+small {
+	font-size: 0.875em;
+}
+
+body {
+	border: 0px;
+	word-spacing: normal;
+	text-transform: none;
+	line-height: normal;
+	padding: 0px;
+	text-align: center;
+	color: #444;
+	font: normal 100% Helvetica, Arial, sans-serif;
+}
+
+#page1 {
+	/*background:url(./images/download/bj.jpg);*/
+	background-size: 100% auto;
+	width: 540px;
+	height: 960px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.button {
+	margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 12%;
+    bottom: 0;
+	padding-top: 800px;
+}
+.bt_common {
+	width: 50%;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: white;
+	
+}
+/*.icon {*/
+	/*width: 45%;*/
+	/*height: 34%;*/
+	/*position: relative;*/
+	/*top: 53%;*/
+	/*background-size: 100% auto;*/
+/*}*/
+
+.popWindow {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	filter: alpha(opacity = 50);
+	opacity: 1;
+	z-index: 1;
+	position: absolute;
+}
+</style>
 </head>
-<body style="margin: 0px; padding: 0px; border: 0px; overflow-y: scroll; background-color: rgb(0, 56, 60); zoom: 1;">
-<div class="weixin-tip">
-    <p> <img src="./live_weixin.png" alt="" style="max-width: 100%; height: auto;"> </p>
-</div>
+<body>
+	<div id="page1">
+		<div class="button">
+			<a class="bt_common" onclick="showOver()">
+				<!--<img alt="" src="./images/download/button.png" height="60%" width="50%">-->
+			</a>
+		</div>
+		<div id="popWindow" class="popWindow" onclick="hideOver()" style="cursor: pointer; display:none;">
+			<img src="./images/download/text.jpg" width="100%" height="100%">
+		</div>
+	</div>
+</body>
 <script type="text/javascript">
-    $(window).on("load",function(){
-        var winHeight = $(window).height();
-        function is_weixin() {
-            var ua = navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == "micromessenger") {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        var isWeixin = is_weixin();
-        if(isWeixin){
-            $(".weixin-tip").css("height",winHeight);
-            $(".weixin-tip").show();
-        }
-    })
+//	checkPath();
+	var iosURL="https://fir.im/v425";
+	var androidURL="https://fir.im/fydb";
+
+	//去下载
+	function goDownload() {
+	  	if (isWeiXin()) {// 是微信内部webView
+		  	document.getElementById("popWindow").style.display = "block";
+//			document.getElementById("page1").style.display="none";
+	  	}else{
+//			document.getElementById("page1").style.background="url(./images/download/bj.jpg)"
+//			return;
+	      	// 是安卓浏览器
+	      	if (isAndroid()) {
+	    		// 跳安卓端下载地址
+	        	window.location.href =androidURL; 
+	      	}else if (isIOS()) {// 是iOS浏览器
+	    		// 跳AppStore下载地址
+	        	window.location.href = iosURL;
+	      	}
+	    }
+	}
+	
+	// 是微信浏览器
+	function isWeiXin(){
+	  	var ua = navigator.userAgent.toLowerCase();
+	  	if(ua.match(/MicroMessenger/i) == "micromessenger") {
+	    	return true;
+	  	} else {
+	    	return false;
+	  	}
+	}
+	
+	function isAndroid(){
+		var ua = navigator.userAgent;
+		return ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1;
+	}
+	
+	function isIOS(){
+		var ua = navigator.userAgent;
+		return !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+	}
+	
+	function isPC() {
+	  var userAgentInfo = navigator.userAgent;
+	  var Agents = ["Android", "iPhone",
+	    "SymbianOS", "Windows Phone",
+	    "iPad", "iPod"];
+	  var flag = true;
+	  for (var v = 0; v < Agents.length; v++) {
+	    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+	      flag = false;
+	      break;
+	    }
+	  }
+	  return flag;
+	}
+	
+	function showOver() {
+		if (isWeiXin()) {
+			document.getElementById('popWindow').style.display = 'block';
+			console.log("isweixin")
+		} else {
+			if (isAndroid()) {
+				window.location.href = androidURL;
+				console.log("isAndroid")
+			} else if (isIOS()) {
+				window.location.href =iosURL;
+				console.log("isIOS")
+			} else {
+				window.location.href = androidURL;
+				console.log("isOther")
+			}
+		}
+	}
+	
+	function hideOver() {
+		document.getElementById('popWindow').style.display = 'none';
+	}
+
+	window.onload = function() {
+//		if (isWeiXin()) {// 是微信内部webView
+//		  document.getElementById("page1").style.display="none";
+//		}
+//		resizeDiv();
+		font();
+		goDownload();
+	};
+	window.onresize = function() {
+//		resizeDiv();
+		font();
+	};
+	
+	function resizeDiv() {
+			var div = document.getElementById("page1");
+			var style = div.currentStyle || getComputedStyle(div, false);
+			var img = new Image();
+			img.src = "images/download/bj.jpg";
+			img.onload = function() {
+				//var ratio = img.width / img.height;
+				//div.style.height = parseInt(div.offsetWidth / ratio) + "px";
+				//img = null;
+			}
+	}
+
+	function font() {
+		if (document.body.offsetWidth <= 320)
+			document.getElementsByTagName("body")[0].setAttribute("style",
+					"font-size:14px;");
+		else if (document.body.offsetWidth > 320
+				&& document.body.offsetWidth < 400)
+			document.getElementsByTagName("body")[0].setAttribute("style",
+					"font-size:16px;");
+		else if (document.body.offsetWidth >= 400
+				&& document.body.offsetWidth < 598)
+			document.getElementsByTagName("body")[0].setAttribute("style",
+					"font-size:18px;");
+		else if (document.body.offsetWidth >= 598
+				&& document.body.offsetWidth < 1024)
+			document.getElementsByTagName("body")[0].setAttribute("style",
+					"font-size:20px;");
+		else
+			document.getElementsByTagName("body")[0].setAttribute("style",
+					"font-size:24px;");
+
+	}
+	function checkPath(){
+		var height = document.body.clientWidth;  
+		if(height<890){
+			window.location.href = 'index.html';
+		}
+	}
 </script>
-<div style="background-image:url(DWTsrc/erwm.jpg);height:1000px;width:640px; margin:auto; background-repeat:no-repeat; overflow:hidden;">
-    <div style="margin:auto; width:422px; height:180px; margin-top:320px;"></div>
-    <a href="https://fir.im/fydb" target="_blank">
-        <div style="width:576px; height:202px; margin:auto; background-image:url(./DWTsrc/Android.png)"><img src="./tdk_android.png" style="float:right; width:100px; height:100px; padding-right:95px;padding-top: 30px;"></div>
-    </a> <a href="https://fir.im/v425" target="_blank">
-    <div style="width:576px; height:202px; margin:auto; margin-top:10px; background-image:url(./DWTsrc/IOS.png)"><img src="./tdk_iOS.png" style="float:right; width:100px; height:100px; padding-right:95px;padding-top: 30px;"></div>
-</a> </div>
-
-
-</body></html>
+</html>
