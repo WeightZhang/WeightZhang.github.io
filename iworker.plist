@@ -11,7 +11,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>http://ipa299.download.com:8080/manager/ipa/iworker4sh.ipa</string>
+					<string>http://114.249.144.139:8080/manager/ipa/iworker4sh.ipa</string>
 				</dict>
 				<dict>
 					<key>kind</key>
@@ -19,7 +19,7 @@
 					<key>needs-shine</key>
 					<true/>
 					<key>url</key>
-					<string>http://ipa299.download.com:8080/manager/ipa/iworker@2x.png</string>
+					<string>http://114.249.144.139:8080/manager/ipa/iworker@2x.png</string>
 				</dict>
 				<dict>
 					<key>kind</key>
@@ -27,7 +27,7 @@
 					<key>needs-shine</key>
 					<true/>
 					<key>url</key>
-					<string>http://ipa299.download.com:8080/manager/ipa/iworker.png</string>
+					<string>http://114.249.144.139:8080/manager/ipa/iworker.png</string>
 				</dict>
 			</array>
 			<key>metadata</key>
