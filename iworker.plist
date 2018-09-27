@@ -11,7 +11,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://github.com/WeightZhang/Tmp/blob/master/1.ipa</string>
+					<string>http://172.20.10.14:8080/mamager/ipa/1.ipa</string>
 				</dict>
 				<dict>
 					<key>kind</key>
