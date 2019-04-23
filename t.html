@@ -1,0 +1,89 @@
+
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.7.2.js"></script>
+</head>
+<script type="text/javascript">		
+	$(function(){
+			function connectWebViewJavascriptBridge(callback){
+				if (window.WebViewJavascriptBridge){
+					callback(WebViewJavascriptBridge)
+				} else {
+					document.addEventListener('WebViewJavascriptBridgeReady', function () {
+						callback(WebViewJavascriptBridge)
+					}, false)
+				}    
+			}
+			connectWebViewJavascriptBridge(function (bridge){
+				bridge.init(function (message, responseCallback) {
+					var data = { 'Javascript Responds': 'Wee!' }
+					responseCallback(data)
+				});   
+				$(".t1").click(function(){
+					bridge.callHandler('addCalendarEvent', str1, function () {
+					})//ios添加事件	
+				});
+				$(".t2").click(function(){
+					bridge.callHandler('removeCalendarEvent', str2, function () {
+					})//ios删除事件	
+				});
+				$(".t3").click(function(){
+					 bridge.callHandler('currentLocation', { '': 'currentLocation', 'body': str3 }, function () {
+						
+                     }) //ios获取定位
+				});
+		   });	
+		});
+
+		
+
+	function LoadingY(){
+        $(function () {
+            function connectWebViewJavascriptBridge(callback) {
+                if (window.WebViewJavascriptBridge) {
+                    callback(WebViewJavascriptBridge)
+                } else {
+                    document.addEventListener('WebViewJavascriptBridgeReady', function () {
+                        callback(WebViewJavascriptBridge)
+                    }, false)
+                }
+            }
+            connectWebViewJavascriptBridge(function (bridge) {
+                bridge.callHandler('LoadingY', { '': 'LoadingY', 'body': {} }, function (response) {
+
+                })
+            });
+
+        });
+
+    }
+
+function LoadingN(){
+     $(function () {
+            function connectWebViewJavascriptBridge(callback) {
+                if (window.WebViewJavascriptBridge) {
+                    callback(WebViewJavascriptBridge)
+                } else {
+                    document.addEventListener('WebViewJavascriptBridgeReady', function () {
+                        callback(WebViewJavascriptBridge)
+                    }, false)
+                }
+            }
+            connectWebViewJavascriptBridge(function (bridge) {
+                bridge.callHandler('LoadingN', { '': 'LoadingN', 'body': {} }, function (response) {
+
+                })
+            });
+
+        });
+}
+loadingY();
+setTimeout(loadingN(),2000)
+
+</script>
+</html>
