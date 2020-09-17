@@ -66,7 +66,7 @@
             <button class="btn" onclick= 'makeCall()' />打电话</button>
             <button class="btn" onclick= 'cebpushwindow()' />pushwindow</button>
             <button class="btn" onclick= 'openAppId()' />打开离线包</button>
-            <button class="btn" onclick= 'openApp()' /><a href="https://cwma.cebbank.com/applinkUL/">打开app</a></button>
+            <button class="btn" onclick= 'openApp()' />打开app</button>
             
         
             
@@ -326,7 +326,7 @@
                 
             var t1 = Date.now();  
           // 使用a标签方法或iframe方法触发URL Scheme
-
+            location.href = "https://cwma.cebbank.com/applinkUL/";
             timeout = setTimeout(function () {  
               var t2 = Date.now();  
               if (t2 - t1 < t + 100) {  
