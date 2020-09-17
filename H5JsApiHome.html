@@ -66,6 +66,7 @@
             <button class="btn" onclick= 'makeCall()' />打电话</button>
             <button class="btn" onclick= 'cebpushwindow()' />pushwindow</button>
             <button class="btn" onclick= 'openAppId()' />打开离线包</button>
+            <button class="btn" onclick= 'openApp()' />打开app</button>
             
         
             
@@ -311,7 +312,31 @@
 <!--                  url: '/www/index.html',-->
                 });
             }
+            function openApp(){
+              window.location.href = "https://cwma.cebbank.com/applinkUL/";
             
+
+            var timeout, t = 1000, hasApp = true;  
+            var openScript = setTimeout(function () {  
+                              if (!hasApp) {
+                                   // 跳转下载链接
+                                    window.location.href = "https://www.baidu.com";
+                              }
+                            }, 2000)  
+                
+            var t1 = Date.now();  
+          // 使用a标签方法或iframe方法触发URL Scheme
+
+            timeout = setTimeout(function () {  
+              var t2 = Date.now();  
+              if (t2 - t1 < t + 100) {  
+                 hasApp = false;
+              }
+            }, t);
+          }
+
+
+
             document.addEventListener('keyboardText', function(data){
                                       <!--                                      alert("来自原生的字符串："+JSON.stringify(data))-->
                                       console.log('------');
