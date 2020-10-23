@@ -68,6 +68,7 @@
             <button class="btn" onclick= 'openAppId()' />打开离线包</button>
             <button class="btn" onclick= 'openApp()' /><a href="yghsh://">打开scheme-yghsh</a></button>
             <button class="btn" onclick= '' /><a href="com.cebbank.xyk://">[打开scheme-com.cebbank.xyk]</a></button>
+            <button class="btn" onclick= 'openApp0()' />[打开scheme-href=com.cebbank.xyk]</button>
             
             <button class="btn" onclick= 'openApp1()' /><a href="https://cwma.cebbank.com/applinkUL/">打开UL</a></button>
 
@@ -322,6 +323,9 @@
                                     appId: '20206020'
 <!--                  url: '/www/index.html',-->
                 });
+            }
+            function openApp0(){
+               window.location.href = "com.cebbank.xyk://"
             }
             function openApp(){
             // window.location.href = "https://cwma.cebbank.com/applinkUL/";
